@@ -5,6 +5,9 @@ import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Image from "next/image";
 import buttercup from "@/assets/buttercup 1.png";
 
+/* basePath prefix — empty on localhost, /sipa-portfolio on GitHub Pages */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 /* ─── Track data — paths from /public/ ──────────────────── */
 const tracks = [
   {
@@ -14,8 +17,8 @@ const tracks = [
     duration: "3:48",
     color: "#ba9dda",
     accentColor: "#e6ee89",
-    src: "/audio/NewJeans - OMG.mp3",
-    cover: "/covers/NewJeans - OMG.png",
+    src: `${BASE}/audio/NewJeans - OMG.mp3`,
+    cover: `${BASE}/covers/NewJeans - OMG.png`,
   },
   {
     id: 2,
@@ -24,8 +27,8 @@ const tracks = [
     duration: "2:55",
     color: "#a9d98e",
     accentColor: "#faaae9",
-    src: "/audio/NewJeans - Hype Boy.mp3",
-    cover: "/covers/NewJeans - Hype Boy.png",
+    src: `${BASE}/audio/NewJeans - Hype Boy.mp3`,
+    cover: `${BASE}/covers/NewJeans - Hype Boy.png`,
   },
   {
     id: 3,
@@ -34,8 +37,8 @@ const tracks = [
     duration: "3:15",
     color: "#faaae9",
     accentColor: "#a9d98e",
-    src: "/audio/NewJeans - Ditto.mp3",
-    cover: "/covers/NewJeans - Ditto.png",
+    src: `${BASE}/audio/NewJeans - Ditto.mp3`,
+    cover: `${BASE}/covers/NewJeans - Ditto.png`,
   },
   {
     id: 4,
@@ -44,8 +47,8 @@ const tracks = [
     duration: "3:35",
     color: "#e6ee89",
     accentColor: "#ba9dda",
-    src: "/audio/NewJeans - New Jeans.mp3",
-    cover: "/covers/NewJeans - New Jeans.png",
+    src: `${BASE}/audio/NewJeans - New Jeans.mp3`,
+    cover: `${BASE}/covers/NewJeans - New Jeans.png`,
   },
   {
     id: 5,
@@ -54,8 +57,8 @@ const tracks = [
     duration: "3:02",
     color: "#a9d98e",
     accentColor: "#ba9dda",
-    src: "/audio/NewJeans - Attention.mp3",
-    cover: "/covers/NewJeans - Attention.png",
+    src: `${BASE}/audio/NewJeans - Attention.mp3`,
+    cover: `${BASE}/covers/NewJeans - Attention.png`,
   },
   {
     id: 6,
@@ -64,8 +67,8 @@ const tracks = [
     duration: "3:05",
     color: "#ba9dda",
     accentColor: "#a9d98e",
-    src: "/audio/NewJeans - ETA.mp3",
-    cover: "/covers/NewJeans - ETA.png",
+    src: `${BASE}/audio/NewJeans - ETA.mp3`,
+    cover: `${BASE}/covers/NewJeans - ETA.png`,
   },
   {
     id: 7,
@@ -74,10 +77,11 @@ const tracks = [
     duration: "3:22",
     color: "#faaae9",
     accentColor: "#e6ee89",
-    src: "/audio/NewJeans - Hurt.mp3",
-    cover: "/covers/NewJeans - Hurt.png",
+    src: `${BASE}/audio/NewJeans - Hurt.mp3`,
+    cover: `${BASE}/covers/NewJeans - Hurt.png`,
   },
 ];
+
 
 /* ─── Vinyl SVG + full-disc cover art ───────────────────── */
 function VinylDisc({ cover, title }: { cover: string; title: string }) {
