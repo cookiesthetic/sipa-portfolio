@@ -4,19 +4,21 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
-import img1 from "@/assets/image.png";
-import img2 from "@/assets/image2.png";
-import img3 from "@/assets/profile.png";
+import img1 from "@/assets/sipa1.png";
+import img2 from "@/assets/sipa2.png";
+import img3 from "@/assets/sipa3.png";
+import img4 from "@/assets/sipa4.png";
+import img5 from "@/assets/sipa5.png";
 
 /* ── Satellite definitions (angles avoid straight-up to prevent overflow) ── */
 // angle convention: 0 = top, 90 = right, 180 = bottom, 270 = left
 // Spread: top-left, top-right, right, bottom-right, bottom-left — no card goes straight up
 const SATELLITES = [
-  { id: 1, src: img1, alt: "Photo 1", caption: "vibes ✨",       label: "summer '24", angle: -50,  rotate: -18, borderColor: "#a9d98e" },
-  { id: 2, src: img2, alt: "Photo 2", caption: "golden hour 🌅", label: "wanderlust",  angle: 50,   rotate: 14,  borderColor: "#e6ee89" },
-  { id: 3, src: img3, alt: "Photo 3", caption: "that's me 🤍",   label: "portrait",   angle: 120,  rotate: 22,  borderColor: "#faaae9" },
-  { id: 4, src: img1, alt: "Photo 4", caption: "good times 🎉",  label: "moments",    angle: 175,  rotate: -8,  borderColor: "#ba9dda" },
-  { id: 5, src: img2, alt: "Photo 5", caption: "city lights 🌆", label: "nights",     angle: -120, rotate: 10,  borderColor: "#a9d98e" },
+  { id: 1, src: img1, alt: "Photo 1", caption: "vibes ✨", label: "summer '24", angle: -50, rotate: -18, borderColor: "#a9d98e" },
+  { id: 2, src: img2, alt: "Photo 2", caption: "golden hour 🌅", label: "wanderlust", angle: 50, rotate: 14, borderColor: "#e6ee89" },
+  { id: 3, src: img3, alt: "Photo 3", caption: "that's me 🤍", label: "portrait", angle: 120, rotate: 22, borderColor: "#faaae9" },
+  { id: 4, src: img4, alt: "Photo 4", caption: "good times 🎉", label: "moments", angle: 175, rotate: -8, borderColor: "#ba9dda" },
+  { id: 5, src: img5, alt: "Photo 5", caption: "city lights 🌆", label: "nights", angle: -120, rotate: 10, borderColor: "#a9d98e" },
 ];
 
 function polarToXY(angleDeg: number, radius: number) {
