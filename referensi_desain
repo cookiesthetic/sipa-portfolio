@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Olivia - UI/UX Designer Portfolio</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&amp;family=Inter:wght@400;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#6d5e00",
+                        "on-tertiary-fixed": "#211b00",
+                        "on-secondary-container": "#4b6d00",
+                        "inverse-surface": "#30312f",
+                        "surface-tint": "#674bb5",
+                        "surface": "#fbf9f6",
+                        "tertiary-fixed-dim": "#e2c62d",
+                        "on-secondary": "#ffffff",
+                        "on-surface": "#1b1c1a",
+                        "surface-container-highest": "#e4e2df",
+                        "surface-container": "#efeeeb",
+                        "inverse-primary": "#cebdff",
+                        "on-primary-fixed": "#21005e",
+                        "outline": "#7a7583",
+                        "tertiary-container": "#b49c00",
+                        "on-primary": "#ffffff",
+                        "on-primary-container": "#3c1989",
+                        "on-error": "#ffffff",
+                        "surface-dim": "#dbdad7",
+                        "secondary": "#476800",
+                        "on-surface-variant": "#494552",
+                        "background": "#fbf9f6",
+                        "on-tertiary-container": "#3d3400",
+                        "on-secondary-fixed-variant": "#354e00",
+                        "secondary-container": "#bcf063",
+                        "primary-fixed-dim": "#cebdff",
+                        "secondary-fixed": "#bff365",
+                        "surface-container-high": "#eae8e5",
+                        "secondary-fixed-dim": "#a4d64c",
+                        "surface-container-low": "#f5f3f0",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#f2f0ed",
+                        "primary-fixed": "#e8ddff",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed-variant": "#524600",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#a78bfa",
+                        "tertiary-fixed": "#ffe24c",
+                        "surface-bright": "#fbf9f6",
+                        "on-secondary-fixed": "#131f00",
+                        "on-primary-fixed-variant": "#4f319c",
+                        "on-background": "#1b1c1a",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#674bb5",
+                        "surface-variant": "#e4e2df",
+                        "outline-variant": "#cac4d4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1280px",
+                        "gutter": "24px",
+                        "border-width-sm": "2px",
+                        "border-width-lg": "3px",
+                        "base": "8px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Space Grotesk"],
+                        "body-lg": ["Inter"],
+                        "label-bold": ["Space Grotesk"],
+                        "display-lg-mobile": ["Space Grotesk"],
+                        "headline-xl": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-bold": ["14px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-lg-mobile": ["48px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "headline-xl": ["48px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "headline-md": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neubrutalist-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+        }
+
+        .neubrutalist-shadow-hover:hover {
+            box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 1);
+            transform: translate(3px, 3px);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-background font-body-md antialiased overflow-x-hidden">
+    <!-- TopNavBar -->
+    <nav
+        class="flex justify-between items-center w-full h-20 mx-auto docked full-width top-0 border-b-border-width-lg border-on-background bg-background z-50 sticky">
+        <div
+            class="text-headline-md font-headline-md font-black text-on-background px-base border-r-border-width-lg border-on-background h-full flex items-center">
+            Olivia
+        </div>
+        <div class="hidden md:flex flex-row items-center h-full">
+            <a class="h-full flex items-center px-gutter text-on-background font-black border-b-border-width-sm border-on-background"
+                href="#">Work</a>
+            <a class="h-full flex items-center px-gutter text-on-surface-variant font-label-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all border-r-border-width-lg border-on-background"
+                href="#">Services</a>
+            <a class="h-full flex items-center px-gutter text-on-surface-variant font-label-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all border-r-border-width-lg border-on-background"
+                href="#">About</a>
+            <a class="h-full flex items-center px-gutter text-on-surface-variant font-label-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all"
+                href="#">Contact</a>
+        </div>
+        <div class="h-full flex items-center border-l-border-width-lg border-on-background">
+            <button
+                class="h-full px-gutter bg-background text-on-background font-label-bold hover:bg-secondary-container hover:text-on-secondary-container transition-all">Hire
+                Me</button>
+            <div
+                class="h-full w-20 flex items-center justify-center border-l-border-width-lg border-on-background bg-secondary-fixed-dim">
+                <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center neubrutalist-shadow">
+                    <img alt="Profile" class="w-full h-full rounded-full object-cover"
+                        data-alt="A small circular profile picture of a young woman with dark hair, used as an avatar in the top navigation bar. She is smiling gently. The image is framed by a bold neubrutalist black border and hard shadow."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQH_xJ-mDQyt-_sbbkkELez3OXDpJE44PRfQCJfLMkomzPao25OOlhfSt3OAd6_XiPiJceOeaiaStjU1ZetKvPnY2FTWzzQIUSCrMgYNKH5RTa_JrL3uIdo0RXm0rpYUgSPPNWGPfS_8UkT3zxWVs4Be0Npk22xu-y60BSilg7tI1GkCUkGUU6FsJX-em6wYsSfrN2zzbIFBKExwIyWLGUB8R-Zq3Uk4xvMF_-XRvhYDcT8v_K7Y72q4o4BYu3oKxILz6cSzmqVeki" />
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <section
+        class="max-w-container-max mx-auto px-gutter py-margin grid grid-cols-1 md:grid-cols-2 gap-margin items-center relative border-b-border-width-lg border-on-background">
+        <div class="flex flex-col gap-base z-10">
+            <p class="font-body-lg text-body-lg text-on-surface-variant">Hi, my name is Olivia</p>
+            <h1 class="font-display-lg text-display-lg leading-tight">
+                I Turn Ideas<br />
+                Into <span
+                    class="inline-block bg-tertiary-fixed px-base py-1 border-border-width-lg border-on-background transform rotate-[-2deg] neubrutalist-shadow">Realities.</span>
+            </h1>
+            <p class="font-body-lg text-body-lg mt-base max-w-md">
+                I am a UI/UX designer with a passion for crafting performant, scalable, and user-friendly interfaces.
+                Always looking for new challenges and opportunities to grow my skills.
+            </p>
+            <button
+                class="mt-margin self-start bg-primary-fixed text-on-primary-fixed border-border-width-lg border-on-background px-gutter py-base font-label-bold text-label-bold flex items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover transition-all">
+                Get In Touch <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+            </button>
+        </div>
+        <div class="relative h-[600px] flex justify-center items-end hidden md:flex">
+            <!-- Decorative Elements -->
+            <div
+                class="absolute top-10 left-0 bg-secondary-fixed border-border-width-lg border-on-background p-4 neubrutalist-shadow transform rotate-[-5deg] z-20">
+                <span class="material-symbols-outlined text-[48px] font-bold">code</span>
+            </div>
+            <div
+                class="absolute bottom-20 left-10 w-20 h-20 bg-primary-fixed border-border-width-lg border-on-background rounded-full flex items-center justify-center neubrutalist-shadow z-20">
+                <span class="material-symbols-outlined text-[32px]">design_services</span>
+            </div>
+            <div
+                class="absolute top-20 right-10 w-24 h-24 border-border-width-lg border-on-background rounded-full border-t-secondary-fixed border-r-secondary-fixed border-b-transparent border-l-transparent transform rotate-45 z-0">
+            </div>
+            <!-- Main Image Frame -->
+            <div
+                class="relative w-[400px] h-[500px] bg-[#ff80ff] border-border-width-lg border-on-background rounded-[40px] rounded-br-none neubrutalist-shadow z-10 flex items-end justify-center overflow-hidden">
+                <img alt="Olivia" class="w-[90%] object-cover object-bottom translate-y-4"
+                    data-alt="A portrait of a young female designer with long dark wavy hair, wearing a simple white t-shirt. She is looking directly at the camera with a confident, slight smile. The portrait is set against a vibrant pink background shaped like an arch, bordered by a thick black line in a neubrutalist style."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAStH05JWZpAqEHEoOFqDCqaaHELntaRnGOd1bWsBIHygZpI9AUAh4F0otJrVs19hUcVql_R213XDYJDfBgWs7nXZdfUSiwzsfFs_Jj9vzAjO3D1SBd8u4rehkgKG0iRDKZiPdFVgoED4qF2zLZn1QYeJUYJ_8f6DCsGVb2FF-SAj1SzM4DBVLalv6gyY2Jrb9Jpbo9-A2lSdupBT3FewQ_wFF1ZWA8PxGZID98E0IeWi9KreXlOfLPR9308WI4arJPqmlEIgwGXbto" />
+            </div>
+            <div
+                class="absolute top-1/2 right-0 bg-primary-fixed border-border-width-lg border-on-background px-4 py-2 font-label-bold text-label-bold rounded-full neubrutalist-shadow z-20">
+                Available for freelance
+            </div>
+            <!-- Starburst -->
+            <div class="absolute bottom-10 right-10 z-20">
+                <svg class="fill-secondary-fixed stroke-on-background stroke-[3px]" height="80" viewbox="0 0 100 100"
+                    width="80">
+                    <path d="M50 0 L55 40 L95 20 L65 55 L100 80 L55 70 L40 100 L35 60 L0 80 L30 45 L0 20 L40 30 Z">
+                    </path>
+                </svg>
+            </div>
+        </div>
+    </section>
+    <!-- Services Section -->
+    <section class="border-b-border-width-lg border-on-background bg-background">
+        <div class="max-w-container-max mx-auto py-margin">
+            <div class="px-gutter mb-margin">
+                <p class="font-body-md text-body-md mb-2">Passion led us here</p>
+                <h2 class="font-headline-xl text-headline-xl">What can I do for you</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 border-t-border-width-lg border-on-background">
+                <!-- Service Card 1 -->
+                <div
+                    class="p-margin border-r-border-width-lg border-b-border-width-lg md:border-b-0 border-on-background bg-background hover:bg-surface-container transition-colors">
+                    <div
+                        class="w-16 h-16 rounded-full bg-primary-fixed border-border-width-lg border-on-background flex items-center justify-center mb-base neubrutalist-shadow">
+                        <span class="material-symbols-outlined text-[32px]">language</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md mb-4 mt-8">Web Development</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        From concept to code, I build responsive, high-performance websites using modern technologies
+                        like React, Next.js, and Tailwind CSS.
+                    </p>
+                </div>
+                <!-- Service Card 2 -->
+                <div
+                    class="p-margin border-r-border-width-lg border-b-border-width-lg md:border-b-0 border-on-background bg-background hover:bg-surface-container transition-colors">
+                    <div
+                        class="w-16 h-16 rounded-full bg-tertiary-fixed border-border-width-lg border-on-background flex items-center justify-center mb-base neubrutalist-shadow">
+                        <span class="material-symbols-outlined text-[32px]">smartphone</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md mb-4 mt-8">Mobile Development</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Create native and cross-platform mobile applications with seamless user experiences using React
+                        Native and Flutter frameworks.
+                    </p>
+                </div>
+                <!-- Service Card 3 -->
+                <div
+                    class="p-margin border-b-border-width-lg md:border-b-0 border-on-background bg-background hover:bg-surface-container transition-colors">
+                    <div
+                        class="w-16 h-16 rounded-full bg-secondary-fixed border-border-width-lg border-on-background flex items-center justify-center mb-base neubrutalist-shadow">
+                        <span class="material-symbols-outlined text-[32px]">draw</span>
+                    </div>
+                    <h3 class="font-headline-md text-headline-md mb-4 mt-8">UI/UX Design</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Design intuitive and engaging user interfaces with focus on user experience, accessibility, and
+                        modern design principles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- About Me Section -->
+    <section
+        class="max-w-container-max mx-auto px-gutter py-[80px] grid grid-cols-1 lg:grid-cols-2 gap-margin items-start border-b-border-width-lg border-on-background">
+        <!-- Complex Image Arch Assembly -->
+        <div class="relative flex justify-center pb-10">
+            <!-- Outermost Arch (Green) -->
+            <div
+                class="absolute w-[400px] h-[550px] bg-[#a8f2ca] border-border-width-lg border-on-background rounded-t-[200px] rounded-b-[40px] z-0">
+            </div>
+            <!-- Middle Arch (Purple) -->
+            <div
+                class="absolute w-[360px] h-[510px] bg-primary-fixed border-border-width-lg border-on-background rounded-t-[180px] rounded-b-[30px] bottom-6 z-10">
+            </div>
+            <!-- Inner Arch (Pink) -->
+            <div
+                class="relative w-[320px] h-[470px] bg-[#ff80ff] border-border-width-lg border-on-background rounded-t-[160px] rounded-b-[20px] z-20 mt-10 flex items-end justify-center overflow-hidden">
+                <img alt="Olivia" class="w-[90%] object-cover object-bottom translate-y-4"
+                    data-alt="A portrait of the same young female designer with long dark wavy hair, wearing a white t-shirt. She is framed by a complex, triple-layered arched window consisting of lime green, light purple, and vibrant pink backgrounds, all outlined with thick black neubrutalist borders."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDji4Jd8EDB_zBO1qt4HLenXuHfa5hjKIJwFLQdX__wY5UkJ-R8kR4cAHxS1suenrZ_N6ixmtZvPwtrm4Oy6qHxD12n6VJNIHyNlHiO3AlCltp6PJQMKjDwMcZeb30OxfPVqazEIGWZ4t7eEyQOJXNJO2s7V-F_SXcHg6erYwrq1WiOzM6IaMzQye28xQ_ufGUh1EvNlSVjcgq_1co-JMbqdd0Z1UJdUqKDpi6AwHnC1D3aeDu6ZqbCC1GNmNV1y5F010vFixcMGkbD" />
+            </div>
+            <!-- Floating Badges -->
+            <div
+                class="absolute top-0 left-10 w-24 h-24 bg-background border-border-width-lg border-on-background rounded-full flex items-center justify-center neubrutalist-shadow z-30">
+                <span class="material-symbols-outlined text-[48px]">webhook</span>
+            </div>
+            <div
+                class="absolute top-20 right-0 bg-tertiary-fixed border-border-width-lg border-on-background p-2 rounded-[12px] neubrutalist-shadow transform rotate-[15deg] z-30">
+                <div class="grid grid-cols-2 gap-1">
+                    <div class="w-4 h-4 rounded-full bg-error"></div>
+                    <div class="w-4 h-4 rounded-full bg-primary"></div>
+                    <div class="w-4 h-4 rounded-full bg-secondary"></div>
+                    <div class="w-4 h-4 rounded-full bg-background border-border-width-sm border-on-background"></div>
+                </div>
+            </div>
+            <div
+                class="absolute bottom-20 left-0 w-32 h-24 bg-primary border-border-width-lg border-on-background flex items-center justify-center neubrutalist-shadow z-30 text-white font-bold text-4xl italic">
+                W
+            </div>
+            <div
+                class="absolute -bottom-4 right-10 w-28 h-28 bg-[#f94e70] border-border-width-lg border-on-background rounded-full neubrutalist-shadow z-30 overflow-hidden">
+                <svg class="w-full h-full stroke-on-background stroke-[3px] fill-transparent" viewbox="0 0 100 100">
+                    <circle cx="50" cy="50" r="48"></circle>
+                    <path d="M10 50 Q50 90 90 50"></path>
+                    <path d="M10 50 Q50 10 90 50"></path>
+                    <path d="M50 10 L50 90"></path>
+                    <path d="M10 50 L90 50"></path>
+                </svg>
+            </div>
+        </div>
+        <!-- Timeline Content -->
+        <div class="flex flex-col gap-6 pt-10">
+            <h2 class="font-headline-xl text-headline-xl">About Me</h2>
+            <p class="font-body-md text-body-md font-bold">I am a UI/UX Designer with a passion for creating beautiful
+                experiences.</p>
+            <p class="font-body-md text-body-md text-on-surface-variant mb-4">
+                Passionate about crafting performant, scalable, and user-friendly interfaces. Always looking for new
+                challenges and opportunities to grow my skills.
+            </p>
+            <div class="flex flex-col gap-8 border-l-[3px] border-on-background ml-8 pl-8 relative">
+                <!-- Timeline Item 1 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[54px] top-0 bg-primary-fixed border-border-width-lg border-on-background px-3 py-1 font-label-bold text-label-bold neubrutalist-shadow">
+                        2024
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Started consulting for startups and scale-ups while mentoring aspiring designers. Helping
+                        companies build strong design foundations and design teams that drive business growth.
+                    </p>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[54px] top-0 bg-primary-fixed border-border-width-lg border-on-background px-3 py-1 font-label-bold text-label-bold neubrutalist-shadow">
+                        2023
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        Transitioned to leading product design initiatives, focusing on user experience optimization and
+                        design system development. Led a team of designers to create cohesive and user-centered design
+                        solutions.
+                    </p>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="relative">
+                    <div
+                        class="absolute -left-[54px] top-0 bg-primary-fixed border-border-width-lg border-on-background px-3 py-1 font-label-bold text-label-bold neubrutalist-shadow">
+                        2022
+                    </div>
+                    <p class="font-body-md text-body-md text-on-surface-variant">
+                        I started working as a Sr. Product Designer at <a class="underline text-primary font-bold"
+                            href="#">Sweatcoin</a>, a mobile app that rewards users for walking. I was in the Growth
+                        Team, where my main focus was design with the goal of user acquisition. My marketing background
+                        was particularly useful here. During my time there we gained 80M+ new users.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Featured Projects Section -->
+    <section class="border-b-border-width-lg border-on-background">
+        <div
+            class="bg-primary-fixed py-8 border-b-border-width-lg border-on-background flex justify-center items-center gap-4">
+            <span class="material-symbols-outlined text-[32px] text-tertiary-fixed font-bold">close</span>
+            <span class="material-symbols-outlined text-[32px] text-tertiary-fixed font-bold">close</span>
+            <h2 class="font-headline-xl text-headline-xl px-4">Featured Projects</h2>
+            <span class="material-symbols-outlined text-[32px] text-tertiary-fixed font-bold">close</span>
+            <span class="material-symbols-outlined text-[32px] text-tertiary-fixed font-bold">close</span>
+        </div>
+        <!-- Project 1 -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 border-b-border-width-lg border-on-background">
+            <div
+                class="border-r-border-width-lg border-on-background relative overflow-hidden bg-[#e6e8ff] aspect-video lg:aspect-auto">
+                <img alt="Vintage Records Project" class="w-full h-full object-cover"
+                    data-alt="A screenshot of a colorful, retro-themed website for 'Vintage Records'. The design features large 3D typography, abstract geometric shapes in lime green and orange, and an image of a person holding a large vinyl record with a smiley face over their head. The style is playful and maximalist."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr-Pez6Qyq2atgOGsyC2pE9Ph9sHoJ8Dt08v9N-edeAJkZ7wg-TozQdsYHgJU9wa7t-1OQV5khfIm6kOH_PAGacLqQNC78MWOGP1fLPWBhFDWpwcOOhZ3vhhu-1IGqfzdlRYbwROHxqiwCxjeldfZlzSDyDMlDH9A6HUOJ5088Q4R45USKt0mgn5VQWo2Blm7Nigc3mN-N_v3yvI9VKj6aGG-aszb9pibA_mFKJKmD_3DXoHYQx3q02Z3035iQLNtmTVNwUQi5raHW" />
+            </div>
+            <div class="p-margin lg:p-[80px] bg-background flex flex-col justify-center">
+                <div class="flex gap-2 mb-6">
+                    <span
+                        class="bg-tertiary-fixed border-border-width-sm border-on-background px-3 py-1 font-label-bold text-label-bold text-xs">Growth
+                        Design</span>
+                    <span
+                        class="bg-[#ff80ff] border-border-width-sm border-on-background px-3 py-1 font-label-bold text-label-bold text-xs">Mobile
+                        App</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-4">66M Users in a Year: Growth Design Case Study</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                    In 2022, Sweatcoin became the world's most downloaded Health &amp; Fitness App. One of the features
+                    that helped to gain more than 66M downloads that year was 'Scratch The Prize'.
+                </p>
+                <button
+                    class="self-start bg-secondary-fixed border-border-width-lg border-on-background px-6 py-2 font-label-bold text-label-bold flex items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover transition-all">
+                    View Now <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                </button>
+            </div>
+        </div>
+        <!-- Project 2 (Partial view to match layout intent) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+            <div
+                class="border-r-border-width-lg border-on-background p-margin lg:p-[80px] bg-background flex flex-col justify-center order-2 lg:order-1">
+                <div class="flex gap-2 mb-6">
+                    <span
+                        class="bg-primary-fixed border-border-width-sm border-on-background px-3 py-1 font-label-bold text-label-bold text-xs">UI
+                        Design</span>
+                </div>
+                <h3 class="font-headline-md text-headline-md mb-4">Music Streaming App Redesign</h3>
+                <p class="font-body-md text-body-md text-on-surface-variant mb-8">
+                    A conceptual redesign of a popular music streaming service, focusing on improved typography, bolder
+                    colors, and a more intuitive navigation structure.
+                </p>
+                <button
+                    class="self-start bg-tertiary-fixed border-border-width-lg border-on-background px-6 py-2 font-label-bold text-label-bold flex items-center gap-2 neubrutalist-shadow neubrutalist-shadow-hover transition-all">
+                    View Now <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                </button>
+            </div>
+            <div class="relative overflow-hidden bg-[#ffccf9] aspect-video lg:aspect-auto order-1 lg:order-2">
+                <img alt="Music App Design" class="w-full h-full object-cover"
+                    data-alt="A mockup of a mobile application interface showing a music player. The design uses vibrant pastel colors, retro 90s aesthetic elements like cassette tapes, and bold sans-serif typography. The style is heavily influenced by neubrutalism with harsh borders."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDewCK9LNJPNMQ_l4dxwaUZLvYB_lhoQcFcQGSWhXkR5s7EwgkQLy-y3DUwOFlVqsY4JV_aV3-ql1RwZ_3LLHyxWIcgFsw6L_ZptQa4cNvJarh5y_jlFnW0tJLrPQ5dcgHD_9W5GLpLIoFaf7fcvKJZNB4VgLxech5AlWZ55I7JvCScIPYnZCU1ZGUeJvrMzxWoFg9MvTsfTSHwdRQXp5rk9SaKAw8fazuBtsi9sN3gOcqr-PZ6_YmVEUdf-w7O0o21sn4oKNDYVp-w" />
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="border-b-border-width-lg border-on-background bg-background py-margin">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <p class="font-body-md text-body-md mb-2">I take pride in my work</p>
+            <h2 class="font-headline-xl text-headline-xl mb-16">What my clients say about me</h2>
+            <div class="relative max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-[100px] pb-10">
+                <!-- Testimonial 1 -->
+                <div class="relative">
+                    <!-- Background decorative card -->
+                    <div
+                        class="absolute inset-0 bg-secondary-fixed border-border-width-lg border-on-background transform rotate-[2deg] translate-x-2 translate-y-2">
+                    </div>
+                    <!-- Main card -->
+                    <div
+                        class="relative bg-primary-fixed border-border-width-lg border-on-background p-6 transform rotate-[-2deg] neubrutalist-shadow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full border-border-width-sm border-on-background overflow-hidden">
+                                <img alt="Michael Scott" class="w-full h-full object-cover"
+                                    data-alt="A small circular profile picture of a middle-aged man in a suit. He has short dark hair and a slight smile. The image has a hard black border."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj840chzLQJ-1aHceg15qQoFZi_td0Lz14eISZo7NCXKhwNS-L6E9FqiamfHzZKCZ3sazBVf0VSAhXTWo74qIaGTMrAA7SXf-isgtalHjGKnREkevTGdgl4rH1iEKY6_fLdHA2uh-eQeuvYBHxx2Fecc-Ft0ZroM5_FYxGPIO0I2jJfV4ImGp-ZTVgBOyzA4CIxEhLDvoCOYwgbZ5vWkuFXNN0lnWdN-fErapr-_GJEyheQ_GPgIDiLcqKPX0As3sbE5GAeO469r-p" />
+                            </div>
+                            <div>
+                                <h4 class="font-headline-md text-[24px]">Michael Scott</h4>
+                                <p class="font-label-bold text-label-bold text-xs text-on-surface-variant">Regional
+                                    Manager @ Dunder Mifflin</p>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            We sold lots of papers, thanks to Olivia. She even outperformed our Dwight Schrute.
+                        </p>
+                        <!-- Starburst decoration -->
+                        <div
+                            class="absolute -top-6 -right-6 w-12 h-12 bg-white border-border-width-lg border-on-background flex items-center justify-center transform rotate-12">
+                            <svg class="w-8 h-8 fill-transparent stroke-on-background stroke-[4px]"
+                                viewbox="0 0 100 100">
+                                <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="relative mt-20 md:mt-32">
+                    <!-- Background decorative card -->
+                    <div
+                        class="absolute inset-0 bg-[#ff80ff] border-border-width-lg border-on-background transform rotate-[-3deg] -translate-x-2 translate-y-4">
+                    </div>
+                    <!-- Main card -->
+                    <div
+                        class="relative bg-primary-fixed border-border-width-lg border-on-background p-8 transform rotate-[1deg] neubrutalist-shadow">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div
+                                class="w-16 h-16 rounded-full border-border-width-sm border-on-background overflow-hidden bg-[#ff80ff]">
+                                <img alt="Floyd Miles" class="w-full h-full object-cover"
+                                    data-alt="A small circular profile picture of a young woman with blonde hair, smiling brightly. The image is set against a pink background and has a hard black border."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2drGASKiNYnbzzPfhIOP4716BpgPHowG9ADsrvnbPWUviYAhbRZZoVAoL3wbKs4ZmeGYFCpAIutIXGmqWy-yfEBtWV1bGA4iL5iAgFZEPjOxbGH9FEpYChJge4bUWKlJJvpHV2D2MRUev-lodSC4CMZ9gQ-z8EfCS3OgmF6fzdQl6RcYHxLlgFLMhlqMD-6ejX1rZi4-2jnayfLgXkS0fG71hxa5685r71yZsYJTxR2acZifuOT1TamjG441jxWg-SQTbnSH_4WUm" />
+                            </div>
+                            <div>
+                                <h4 class="font-headline-md text-[28px]">Floyd Miles</h4>
+                                <p class="font-label-bold text-label-bold text-sm text-on-surface-variant">CEO at Big
+                                    Company</p>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            Our revenue increased 3x in the first year after working with Olivia. She is a true
+                            professional.
+                        </p>
+                        <!-- Starburst decoration -->
+                        <div
+                            class="absolute -bottom-8 -right-8 w-16 h-16 bg-white border-border-width-lg border-on-background flex items-center justify-center transform -rotate-12">
+                            <svg class="w-12 h-12 fill-transparent stroke-on-background stroke-[4px]"
+                                viewbox="0 0 100 100">
+                                <path d="M50 0 L60 40 L100 50 L60 60 L50 100 L40 60 L0 50 L40 40 Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="relative mt-10 md:-mt-10">
+                    <!-- Background decorative card -->
+                    <div
+                        class="absolute inset-0 bg-secondary-fixed border-border-width-lg border-on-background transform rotate-[1deg] translate-x-2 -translate-y-2">
+                    </div>
+                    <!-- Main card -->
+                    <div
+                        class="relative bg-primary-fixed border-border-width-lg border-on-background p-6 transform rotate-[-1deg] neubrutalist-shadow">
+                        <div class="flex items-center gap-4 mb-4">
+                            <div
+                                class="w-12 h-12 rounded-full border-border-width-sm border-on-background overflow-hidden bg-secondary-fixed">
+                                <img alt="John Doe" class="w-full h-full object-cover"
+                                    data-alt="A small circular profile picture of a man with glasses and a beard, wearing a dark shirt. The background is bright lime green, and the image has a hard black border."
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrSf60cOuNbmBh3A0-ZBwoWOkjz_ODCq6lS-4FlXTniT-Z4U3X0-yNIOlOBQfRyZNF2b8Kcp-uXNAhLIQoaCoNnTEE59w11lor3q_1L487kR2itX7sM3nuv5OmLvlTjRLpHP18wvfxV-AJpTRgXwanlbFWjSK_f1AwyEQMc1kB7SxK8pGN6K6Nt3A0QQ3UVTu6btdX-8kOB-Lv_4aQle63dAqxk7CRmv_j-qr22bSH8KzSPiXyLvCC1dCDLtjYWr4NVDFlnSAHoxfo" />
+                            </div>
+                            <div>
+                                <h4 class="font-headline-md text-[24px]">John Doe</h4>
+                                <p class="font-label-bold text-label-bold text-xs text-on-surface-variant">Founder of
+                                    Small Company</p>
+                            </div>
+                        </div>
+                        <p class="font-body-md text-body-md text-on-surface-variant">
+                            Olivia's attention to detail is unmatched. She completely transformed our user interface.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer / Contact Section -->
+    <footer
+        class="bg-surface-container dark:bg-surface-container-highest w-full py-margin px-gutter max-w-container-max mx-auto border-t-border-width-lg border-on-background">
+        <div class="flex flex-col md:flex-row justify-between items-center w-full">
+            <div class="font-headline-md text-on-background mb-4 md:mb-0">
+                Olivia
+            </div>
+            <div class="flex flex-wrap justify-center gap-6 mb-4 md:mb-0">
+                <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-secondary font-bold transition-colors"
+                    href="#">LinkedIn</a>
+                <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-secondary font-bold transition-colors"
+                    href="#">GitHub</a>
+                <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-secondary font-bold transition-colors"
+                    href="#">Dribbble</a>
+                <a class="font-label-bold text-label-bold text-on-surface-variant hover:text-secondary font-bold transition-colors"
+                    href="#">Twitter</a>
+            </div>
+            <div class="font-body-md text-body-md text-on-surface-variant text-center md:text-right">
+                © 2024 Muhammad Ganang Ramadhan. Built with Neubrutalism.
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

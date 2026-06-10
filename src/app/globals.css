@@ -1,0 +1,114 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-head);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+  --radius-2xl: var(--radius);
+  --radius-3xl: var(--radius);
+  --radius-4xl: var(--radius);
+  --shadow-sm: 2px 2px 0px 0px #000000;
+  --shadow-md: 4px 4px 0px 0px #000000;
+  --shadow-lg: 8px 8px 0px 0px #000000;
+  --shadow-xl: 12px 12px 0px 0px #000000;
+}
+
+:root {
+  --background: #f6faf2;
+  --foreground: #101c0f;
+  --card: #ffffff;
+  --card-foreground: #101c0f;
+  --popover: #ffffff;
+  --popover-foreground: #101c0f;
+  --primary: #a9d98e;
+  --primary-foreground: #101c0f;
+  --secondary: #ba9dda;
+  --secondary-foreground: #101c0f;
+  --muted: #e4eadf;
+  --muted-foreground: #4a5c45;
+  --accent: #e6ee89;
+  --accent-foreground: #101c0f;
+  --destructive: #d94141;
+  --destructive-foreground: #ffffff;
+  --border: #101c0f;
+  --input: #101c0f;
+  --ring: #a9d98e;
+  --radius: 0px;
+}
+
+.dark {
+  --background: #0d140b;
+  --foreground: #f6faf2;
+  --card: #152012;
+  --card-foreground: #f6faf2;
+  --popover: #152012;
+  --popover-foreground: #f6faf2;
+  --primary: #a9d98e;
+  --primary-foreground: #0d140b;
+  --secondary: #ba9dda;
+  --secondary-foreground: #0d140b;
+  --accent: #e6ee89;
+  --accent-foreground: #0d140b;
+  --muted: #1c2b18;
+  --muted-foreground: #8aa881;
+  --destructive: #e05252;
+  --destructive-foreground: #ffffff;
+  --border: #f6faf2;
+  --input: #f6faf2;
+  --ring: #a9d98e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 7rem;
+  }
+}
+
+html {
+  font-size: 125%;
+}
