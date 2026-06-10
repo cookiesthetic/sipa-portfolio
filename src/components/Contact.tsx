@@ -3,9 +3,9 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import haerin from "@/assets/Haerin.png";
+import buttercup2 from "@/assets/buttercup2.png";
 
-const BG_COLOR = "#f0e2dc";
+const BG_COLOR = "#cdeac9"; // Light pastel green: clearly green, not too white, not as dark as the theme green
 
 const SOCIALS = [
   {
@@ -52,120 +52,118 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="w-full flex flex-col lg:flex-row overflow-hidden"
-      style={{ minHeight: "280px" }}
+      className="w-full flex flex-col overflow-hidden relative border-t-4 border-border"
+      style={{ minHeight: "280px", backgroundColor: BG_COLOR }}
     >
-      {/* ── LEFT: Content — no entrance animation ── */}
+      {/* Dot grid across whole section */}
       <div
-        className="relative flex-1 flex flex-col justify-center px-10 md:px-14 py-14"
-        style={{ backgroundColor: BG_COLOR }}
-      >
-        {/* Dot grid */}
-        <div
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            backgroundImage: "radial-gradient(circle, rgba(16,28,15,0.07) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
-          }}
-        />
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(16,28,15,0.06) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
 
-        <div className="relative z-10 max-w-sm">
+      {/* ── ROW 1: Main Content ── */}
+      <div className="relative z-10 flex-1 flex flex-col lg:flex-row justify-between items-center px-8 md:px-12 pt-8 pb-4 gap-8">
+        {/* Left Block: Contact Info & Socials */}
+        <div className="flex-1 min-w-0 max-w-xl self-stretch flex flex-col justify-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 border-[3px] border-border bg-white px-3 py-1 mb-5 shadow-[3px_3px_0px_0px_var(--border)]">
+          <div className="inline-flex items-center gap-2 border-[2.5px] border-border bg-white px-2.5 py-0.5 mb-3.5 shadow-[2.5px_2.5px_0px_0px_var(--border)] self-start">
             <motion.span
               animate={{ scale: [1, 1.35, 1] }}
               transition={{ duration: 1.3, repeat: Infinity }}
-              className="text-xs"
+              className="text-[10px]"
             >
               ✦
             </motion.span>
-            <span className="font-heading font-black text-[10px] text-foreground uppercase tracking-widest">
+            <span className="font-heading font-black text-[9px] text-foreground uppercase tracking-widest">
               Find me online
             </span>
           </div>
 
           {/* Heading */}
-          <h2 className="font-heading font-black text-4xl md:text-5xl text-foreground leading-[0.9] mb-3">
-            Connect<br />
-            <span style={{ color: "#c96a8a" }}>with me</span>
+          <h2 className="font-heading font-black text-3xl md:text-4xl text-foreground leading-tight mb-1">
+            Connect <span style={{ color: "#c96a8a" }}>with me</span>
           </h2>
-          <p className="font-sans text-foreground/55 text-sm mb-8 leading-relaxed">
+          <p className="font-sans text-foreground/55 text-xs mb-4 leading-relaxed">
             Let&apos;s stay connected — follow along on my socials.
           </p>
 
-          {/* Social cards — animated */}
-          <div className="flex flex-col gap-2.5">
+          {/* Social cards (Horizontal Layout) */}
+          <div className="flex flex-row flex-wrap gap-3">
             {SOCIALS.map((s, i) => (
               <motion.a
                 key={s.id}
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 + i * 0.09 }}
-                whileHover={{ x: 5 }}
+                whileHover={{ y: -3 }}
                 className="group relative"
               >
                 {/* Shadow */}
                 <div
-                  className="absolute inset-0 border-[3px] border-border translate-x-1.5 translate-y-1.5 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
+                  className="absolute inset-0 border-[2.5px] border-border translate-x-1 translate-y-1 transition-transform duration-150 group-hover:translate-x-0.5 group-hover:translate-y-0.5"
                   style={{ backgroundColor: s.color }}
                 />
                 {/* Card */}
-                <div className="relative border-[3px] border-border bg-white flex items-center gap-4 px-4 py-3">
+                <div className="relative border-[2.5px] border-border bg-white flex items-center gap-2.5 px-3 py-1.5">
                   <div
-                    className="w-9 h-9 border-[2px] border-border flex items-center justify-center flex-shrink-0"
+                    className="w-7 h-7 border-[2px] border-border flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: s.color, color: "#101c0f" }}
                   >
                     {s.icon}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-heading font-black text-base text-foreground leading-none mb-0.5">
+                  <div className="min-w-0 pr-1">
+                    <p className="font-heading font-black text-xs text-foreground leading-none">
                       {s.label}
                     </p>
-                    <p className="font-mono text-[10px] font-bold text-foreground/45 tracking-wide">
-                      {s.handle}
-                    </p>
                   </div>
-                  <motion.span
-                    animate={{ x: [0, 4, 0] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: i * 0.25 }}
-                    className="font-heading font-black text-foreground/25 text-base flex-shrink-0"
-                  >
-                    →
-                  </motion.span>
                 </div>
               </motion.a>
             ))}
           </div>
+        </div>
 
-          <p className="mt-8 font-heading font-black text-[9px] text-foreground/20 uppercase tracking-[0.3em]">
-            ✦ 2025 · All rights reserved ✦
-          </p>
+        {/* Right Block: Enlarged Asset */}
+        <div className="flex items-center justify-center flex-shrink-0 py-2 lg:py-0">
+          {/* Buttercup2 with neobrutalism drop-shadow + hover animation */}
+          <motion.div
+            whileHover={{
+              y: -12,
+              filter: "drop-shadow(8px 8px 0px #101c0f) drop-shadow(8px 8px 0px #101c0f)",
+            }}
+            transition={{ type: "spring", stiffness: 300, damping: 18 }}
+            style={{
+              filter: "drop-shadow(6px 6px 0px #101c0f) drop-shadow(6px 6px 0px #101c0f)",
+            }}
+            className="cursor-pointer select-none flex items-center justify-center"
+          >
+            <Image
+              src={buttercup2}
+              alt="Buttercup 2"
+              width={380} // Enlarged further from 280 to 380
+              height={380} // Enlarged further from 280 to 380
+              className="object-contain max-h-[180px] lg:max-h-[220px]" // Maximized height constraints
+              priority
+              draggable={false}
+            />
+          </motion.div>
         </div>
       </div>
 
-      {/* ── RIGHT: Image — no entrance animation ── */}
-      <div
-        className="relative lg:w-[44%] xl:w-[40%] min-h-[380px] lg:min-h-full overflow-hidden"
-        style={{ backgroundColor: BG_COLOR }}
-      >
-        {/* Left-edge blend */}
-        <div
-          className="absolute inset-y-0 left-0 w-12 z-10 pointer-events-none"
-          style={{ background: `linear-gradient(to right, ${BG_COLOR}, transparent)` }}
-        />
-        <Image
-          src={haerin}
-          alt="Haerin"
-          fill
-          className="object-cover object-top"
-          priority
-          quality={95}
-          draggable={false}
-        />
+      {/* ── ROW 2: Full-width Sub-footer ── */}
+      <div className="w-full border-t-2 border-border/15 px-8 md:px-12 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10 mt-auto">
+        <span className="font-heading font-black text-2xl text-foreground tracking-wider">
+          SIPA
+        </span>
+        <span className="font-sans text-foreground/50 text-[10px] font-bold">
+          © 2024 Muhammad Ganang Ramadhan. Built with Neubrutalism.
+        </span>
       </div>
     </section>
   );

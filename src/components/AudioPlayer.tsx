@@ -225,19 +225,27 @@ export default function AudioPlayer() {
             viewport={{ once: true }}
             className="hidden md:flex items-end justify-center"
           >
-            <Image
-              src={buttercup}
-              alt="Buttercup"
-              width={280}
-              height={280}
-              className="object-contain"
-              style={{
-                filter:
-                  "drop-shadow(5px 5px 0px #101c0f) drop-shadow(5px 5px 0px #101c0f)",
+            <motion.div
+              whileHover={{
+                y: -12,
+                filter: "drop-shadow(8px 8px 0px #101c0f) drop-shadow(8px 8px 0px #101c0f)",
               }}
-              priority
-              draggable={false}
-            />
+              transition={{ type: "spring", stiffness: 300, damping: 18 }}
+              style={{
+                filter: "drop-shadow(5px 5px 0px #101c0f) drop-shadow(5px 5px 0px #101c0f)",
+              }}
+              className="cursor-pointer select-none"
+            >
+              <Image
+                src={buttercup}
+                alt="Buttercup"
+                width={280}
+                height={280}
+                className="object-contain"
+                priority
+                draggable={false}
+              />
+            </motion.div>
           </motion.div>
 
           {/* ── Col 2: Vinyl turntable ── */}

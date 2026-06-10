@@ -9,16 +9,21 @@ import img2 from "@/assets/sipa2.png";
 import img3 from "@/assets/sipa3.png";
 import img4 from "@/assets/sipa4.png";
 import img5 from "@/assets/sipa5.png";
+import img6 from "@/assets/sipa6.png";
+
+// Sticker assets
+import greencamera from "@/assets/greencamera.png";
+import greenstar from "@/assets/greenstar.png";
+import greensunflower from "@/assets/greensunflower.png";
+import greenclover from "@/assets/greenclover.png";
 
 /* ── Satellite definitions (angles avoid straight-up to prevent overflow) ── */
-// angle convention: 0 = top, 90 = right, 180 = bottom, 270 = left
-// Spread: top-left, top-right, right, bottom-right, bottom-left — no card goes straight up
 const SATELLITES = [
-  { id: 1, src: img1, alt: "Photo 1", caption: "vibes ✨", label: "summer '24", angle: -50, rotate: -18, borderColor: "#a9d98e" },
+  { id: 1, src: img6, alt: "Photo 1", caption: "chilling 😎", label: "summer '24", angle: -50, rotate: -18, borderColor: "#a9d98e" },
   { id: 2, src: img2, alt: "Photo 2", caption: "golden hour 🌅", label: "wanderlust", angle: 50, rotate: 14, borderColor: "#e6ee89" },
-  { id: 3, src: img3, alt: "Photo 3", caption: "that's me 🤍", label: "portrait", angle: 120, rotate: 22, borderColor: "#faaae9" },
+  { id: 3, src: img1, alt: "Photo 3", caption: "rawrrrr 🦁", label: "portrait", angle: 120, rotate: 22, borderColor: "#faaae9" },
   { id: 4, src: img4, alt: "Photo 4", caption: "good times 🎉", label: "moments", angle: 175, rotate: -8, borderColor: "#ba9dda" },
-  { id: 5, src: img5, alt: "Photo 5", caption: "city lights 🌆", label: "nights", angle: -120, rotate: 10, borderColor: "#a9d98e" },
+  { id: 5, src: img5, alt: "Photo 5", caption: "hmmph 😤", label: "nights", angle: -120, rotate: 10, borderColor: "#a9d98e" },
 ];
 
 function polarToXY(angleDeg: number, radius: number) {
@@ -89,7 +94,6 @@ export default function PolaroidGallery() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // On mobile: always expanded (no hover). On desktop: expand on hover.
   const expanded = isMobile ? true : hovered;
 
   const radius = isMobile ? 118 : 235;
@@ -100,7 +104,8 @@ export default function PolaroidGallery() {
   return (
     <section
       id="gallery"
-      className="border-b-4 border-border bg-background w-full text-foreground"
+      className="border-b-4 border-border w-full text-foreground"
+      style={{ backgroundColor: "#f2faf0" }}
     >
       {/* Header — outside the overflow-hidden stage */}
       <div className="max-w-7xl mx-auto px-6 pt-14 pb-6">
@@ -118,13 +123,15 @@ export default function PolaroidGallery() {
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {/* Subtle dot grid */}
+        {/* Square grid background */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
-            backgroundImage:
-              "radial-gradient(circle, rgba(16,28,15,0.08) 1px, transparent 1px)",
-            backgroundSize: "28px 28px",
+            backgroundImage: [
+              "linear-gradient(rgba(169,217,142,0.35) 1px, transparent 1px)",
+              "linear-gradient(90deg, rgba(169,217,142,0.35) 1px, transparent 1px)",
+            ].join(","),
+            backgroundSize: "40px 40px",
           }}
         />
 
@@ -183,7 +190,7 @@ export default function PolaroidGallery() {
                 style={{ width: "32px", height: "5px", backgroundColor: "#faaae9" }}
               />
               <p className="font-heading font-black text-[10px] text-[#101c0f]">
-                that&apos;s me 🤍
+                that&apos;s me 💚🍀
               </p>
               <p className="font-mono text-[8px] text-[#101c0f]/50 uppercase tracking-widest font-bold">
                 portrait
@@ -216,28 +223,70 @@ export default function PolaroidGallery() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Corner stickers */}
-        <motion.span
+        {/* Corner stickers (Replacing Emojis with Image assets) */}
+        {/* Top Right Sticker: greenstar.png */}
+        <motion.div
           animate={{ rotate: [10, -5, 10], scale: [1, 1.06, 1] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-6 right-8 md:right-20 text-3xl select-none pointer-events-none"
+          className="absolute top-6 right-8 md:right-20 w-16 h-16 select-none pointer-events-none z-10"
         >
-          ⭐
-        </motion.span>
-        <motion.span
+          <Image
+            src={greenstar}
+            alt="Star sticker"
+            fill
+            sizes="64px"
+            className="object-contain"
+            draggable={false}
+          />
+        </motion.div>
+
+        {/* Bottom Left Sticker: greensunflower.png */}
+        <motion.div
           animate={{ rotate: [-8, 8, -8], y: [-4, 4, -4] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute bottom-16 left-8 md:left-20 text-2xl select-none pointer-events-none"
+          className="absolute bottom-16 left-8 md:left-20 w-16 h-16 select-none pointer-events-none z-10"
         >
-          🌸
-        </motion.span>
-        <motion.span
+          <Image
+            src={greensunflower}
+            alt="Sunflower sticker"
+            fill
+            sizes="64px"
+            className="object-contain"
+            draggable={false}
+          />
+        </motion.div>
+
+        {/* Top Left Sticker: greencamera.png */}
+        <motion.div
           animate={{ rotate: [5, -10, 5] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-12 left-8 md:left-20 text-2xl select-none pointer-events-none"
+          className="absolute top-12 left-8 md:left-20 w-16 h-16 select-none pointer-events-none z-10"
         >
-          💫
-        </motion.span>
+          <Image
+            src={greencamera}
+            alt="Camera sticker"
+            fill
+            sizes="64px"
+            className="object-contain"
+            draggable={false}
+          />
+        </motion.div>
+
+        {/* Bottom Right Sticker: greenclover.png */}
+        <motion.div
+          animate={{ rotate: [12, -8, 12], y: [4, -4, 4] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
+          className="absolute bottom-16 right-8 md:right-20 w-16 h-16 select-none pointer-events-none z-10"
+        >
+          <Image
+            src={greenclover}
+            alt="Clover sticker"
+            fill
+            sizes="64px"
+            className="object-contain"
+            draggable={false}
+          />
+        </motion.div>
       </div>
 
       {/* Scrolling ticker */}
