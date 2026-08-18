@@ -65,11 +65,11 @@ export default function Contact() {
       />
 
       {/* ── ROW 1: Main Content ── */}
-      <div className="relative z-10 flex-1 flex flex-col lg:flex-row justify-between items-center px-8 md:px-12 pt-8 pb-4 gap-8">
+      <div className="relative z-10 flex-1 flex flex-col lg:flex-row justify-between items-center px-4 sm:px-8 md:px-12 pt-8 pb-4 gap-6 sm:gap-8">
         {/* Left Block: Contact Info & Socials */}
         <div className="flex-1 min-w-0 max-w-xl self-stretch flex flex-col justify-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 border-[2.5px] border-border bg-white px-2.5 py-0.5 mb-3.5 shadow-[2.5px_2.5px_0px_0px_var(--border)] self-start">
+          <div className="inline-flex items-center gap-2 border-[2.5px] border-border bg-white px-2.5 py-0.5 mb-3 shadow-[2.5px_2.5px_0px_0px_var(--border)] self-start">
             <motion.span
               animate={{ scale: [1, 1.35, 1] }}
               transition={{ duration: 1.3, repeat: Infinity }}
@@ -83,15 +83,15 @@ export default function Contact() {
           </div>
 
           {/* Heading */}
-          <h2 className="font-heading font-black text-3xl md:text-4xl text-foreground leading-tight mb-1">
+          <h2 className="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-foreground leading-tight mb-1">
             Connect <span style={{ color: "#c96a8a" }}>with me</span>
           </h2>
-          <p className="font-sans text-foreground/55 text-xs mb-4 leading-relaxed">
+          <p className="font-sans text-foreground/70 text-xs sm:text-sm mb-4 leading-relaxed">
             Let&apos;s stay connected — follow along on my socials.
           </p>
 
           {/* Social cards (Horizontal Layout) */}
-          <div className="flex flex-row flex-wrap gap-3">
+          <div className="flex flex-row flex-wrap gap-2.5 sm:gap-3">
             {SOCIALS.map((s, i) => (
               <motion.a
                 key={s.id}
@@ -111,9 +111,9 @@ export default function Contact() {
                   style={{ backgroundColor: s.color }}
                 />
                 {/* Card */}
-                <div className="relative border-[2.5px] border-border bg-white flex items-center gap-2.5 px-3 py-1.5">
+                <div className="relative border-[2.5px] border-border bg-white flex items-center gap-2 px-2.5 py-1.5">
                   <div
-                    className="w-7 h-7 border-[2px] border-border flex items-center justify-center flex-shrink-0"
+                    className="w-6 h-6 sm:w-7 sm:h-7 border-[2px] border-border flex items-center justify-center flex-shrink-0"
                     style={{ backgroundColor: s.color, color: "#101c0f" }}
                   >
                     {s.icon}
@@ -146,9 +146,9 @@ export default function Contact() {
             <Image
               src={buttercup2}
               alt="Buttercup 2"
-              width={380} // Enlarged further from 280 to 380
-              height={380} // Enlarged further from 280 to 380
-              className="object-contain max-h-[180px] lg:max-h-[220px]" // Maximized height constraints
+              width={380}
+              height={380}
+              className="object-contain max-h-[140px] sm:max-h-[180px] lg:max-h-[220px]"
               priority
               draggable={false}
             />
@@ -157,12 +157,12 @@ export default function Contact() {
       </div>
 
       {/* ── ROW 2: Full-width Sub-footer ── */}
-      <div className="w-full border-t-2 border-border/15 px-8 md:px-12 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10 mt-auto">
-        <span className="font-heading font-black text-2xl text-foreground tracking-wider">
-          SIPA
+      <div className="w-full border-t-2 border-border/15 px-4 sm:px-8 md:px-12 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 relative z-10 mt-auto">
+        <span className="font-heading font-black text-xl sm:text-2xl text-foreground tracking-wider">
+          SYIFA
         </span>
-        <span className="font-sans text-foreground/50 text-[10px] font-bold">
-          © 2024 Muhammad Ganang Ramadhan. Built with Neubrutalism.
+        <span className="font-sans text-foreground/60 text-[10px] sm:text-xs font-bold">
+          © 2024 Syifa Maulida Aprianti. Built with Neubrutalism.
         </span>
       </div>
     </section>

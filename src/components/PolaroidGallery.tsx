@@ -108,9 +108,9 @@ export default function PolaroidGallery() {
       style={{ backgroundColor: "#f2faf0" }}
     >
       {/* Header — outside the overflow-hidden stage */}
-      <div className="max-w-7xl mx-auto px-6 pt-14 pb-6">
-        <p className="font-sans text-base mb-2 text-foreground/80">captured moments</p>
-        <h2 className="font-heading font-black text-5xl md:text-6xl text-foreground">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 pb-4 sm:pb-6">
+        <p className="font-sans text-xs sm:text-base mb-1 text-foreground/80">captured moments</p>
+        <h2 className="font-heading font-black text-3xl sm:text-5xl md:text-6xl text-foreground">
           My Gallery
         </h2>
       </div>
@@ -118,7 +118,7 @@ export default function PolaroidGallery() {
 
       {/* Stage — overflow hidden so nothing bleeds out */}
       <div
-        className="relative w-full overflow-hidden flex items-center justify-center pb-10"
+        className="relative w-full overflow-hidden flex items-center justify-center pb-6 sm:pb-10"
         style={{ height: `${stageH}px` }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
@@ -223,12 +223,12 @@ export default function PolaroidGallery() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Corner stickers (Replacing Emojis with Image assets) */}
+        {/* Corner stickers */}
         {/* Top Right Sticker: greenstar.png */}
         <motion.div
           animate={{ rotate: [10, -5, 10], scale: [1, 1.06, 1] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-6 right-8 md:right-20 w-16 h-16 select-none pointer-events-none z-10"
+          className="absolute top-4 right-4 sm:top-6 sm:right-8 md:right-20 w-10 h-10 sm:w-16 sm:h-16 select-none pointer-events-none z-10"
         >
           <Image
             src={greenstar}
@@ -244,7 +244,7 @@ export default function PolaroidGallery() {
         <motion.div
           animate={{ rotate: [-8, 8, -8], y: [-4, 4, -4] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute bottom-16 left-8 md:left-20 w-16 h-16 select-none pointer-events-none z-10"
+          className="absolute bottom-8 left-4 sm:bottom-16 sm:left-8 md:left-20 w-10 h-10 sm:w-16 sm:h-16 select-none pointer-events-none z-10"
         >
           <Image
             src={greensunflower}
@@ -260,7 +260,7 @@ export default function PolaroidGallery() {
         <motion.div
           animate={{ rotate: [5, -10, 5] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute top-12 left-8 md:left-20 w-16 h-16 select-none pointer-events-none z-10"
+          className="absolute top-6 left-4 sm:top-12 sm:left-8 md:left-20 w-10 h-10 sm:w-16 sm:h-16 select-none pointer-events-none z-10"
         >
           <Image
             src={greencamera}
@@ -276,7 +276,7 @@ export default function PolaroidGallery() {
         <motion.div
           animate={{ rotate: [12, -8, 12], y: [4, -4, 4] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.8 }}
-          className="absolute bottom-16 right-8 md:right-20 w-16 h-16 select-none pointer-events-none z-10"
+          className="absolute bottom-8 right-4 sm:bottom-16 sm:right-8 md:right-20 w-10 h-10 sm:w-16 sm:h-16 select-none pointer-events-none z-10"
         >
           <Image
             src={greenclover}

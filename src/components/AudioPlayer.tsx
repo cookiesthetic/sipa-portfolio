@@ -197,26 +197,26 @@ export default function AudioPlayer() {
   };
 
   return (
-    <section id="music" className="bg-background w-full py-10 text-foreground">
+    <section id="music" className="bg-background w-full py-8 md:py-10 text-foreground overflow-hidden">
       <audio ref={audioRef} preload="metadata" />
 
       {/* Header */}
-      <div className="max-w-7xl mx-auto px-8 md:px-12 mb-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12 mb-6 sm:mb-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="font-sans text-sm mb-1 text-foreground/70">Turn up the volume</p>
-          <h2 className="font-heading font-black text-4xl md:text-5xl text-foreground">
+          <p className="font-sans text-xs sm:text-sm mb-1 text-foreground/70">Turn up the volume</p>
+          <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-foreground">
             What I&apos;m listening to
           </h2>
         </motion.div>
       </div>
 
       {/* 3-column layout: [Asset] [Vinyl] [Tracklist] */}
-      <div className="max-w-7xl mx-auto px-8 md:px-12">
-        <div className="grid grid-cols-1 md:grid-cols-[260px_auto_1fr] gap-8 items-end">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 md:px-12">
+        <div className="grid grid-cols-1 md:grid-cols-[260px_auto_1fr] gap-6 md:gap-8 items-center md:items-end">
 
           {/* ── Col 1: Buttercup asset ── */}
           <motion.div
