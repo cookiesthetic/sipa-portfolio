@@ -12,7 +12,7 @@ export default function Hero() {
       {/* 1. Typography & Content */}
       <div className="flex flex-col gap-6 z-10 text-foreground">
         <p className="text-xl text-muted-foreground font-sans font-bold">
-          Hi, my name is Muhammad Ganang Ramadhan
+          Hi, my name is Syifa Maulida Aprianti
         </p>
         <h1 className="text-6xl md:text-7xl font-heading font-black leading-[1.2] text-foreground">
           I Turn Ideas<br />
