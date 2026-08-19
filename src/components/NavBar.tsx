@@ -16,7 +16,7 @@ export default function NavBar() {
 
   const navLinks = [
     { name: "Home", href: "#home" },
-    { name: "Music", href: "#music" },
+    // { name: "Music", href: "#music" }, 
     { name: "About", href: "#about" },
     { name: "Certificates", href: "#certificates" },
     { name: "Gallery", href: "#gallery" },
@@ -28,16 +28,14 @@ export default function NavBar() {
       <div className="h-20 w-full bg-[#abdc91]"></div>
 
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-          isScrolled ? "pt-2 md:pt-4 px-2 md:px-8" : "pt-0 px-0"
-        }`}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? "pt-2 md:pt-4 px-2 md:px-8" : "pt-0 px-0"
+          }`}
       >
         <nav
-          className={`mx-auto flex justify-between items-center h-20 transition-all duration-300 ${
-            isScrolled
+          className={`mx-auto flex justify-between items-center h-20 transition-all duration-300 ${isScrolled
               ? "max-w-7xl bg-[#abdc91] border-[3px] border-border px-4 md:px-8 shadow-[4px_4px_0px_0px_var(--border)]"
               : "w-full bg-[#abdc91] border-b-4 border-border px-4 md:px-8"
-          }`}
+            }`}
         >
           {/* Left: Logo */}
           <div className="flex items-center gap-2 cursor-pointer text-foreground">

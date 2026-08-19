@@ -15,8 +15,8 @@ const geraldton = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Syifa Maulida Aprianti Portfolio",
-  description: "I Turn Ideas Into Realities",
+  title: "Syifa Maulida Aprianti | English Literature & Linguistics",
+  description: "Student at Universitas Islam Negeri Antasari (UIN Antasari) passionate about English Literature, English Linguistics, and Creative Writing.",
 };
 
 export default function RootLayout({

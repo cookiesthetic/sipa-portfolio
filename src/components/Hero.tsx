@@ -17,20 +17,19 @@ export default function Hero() {
           Hi, my name is Syifa Maulida Aprianti
         </p>
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-heading font-black leading-[1.15] text-foreground">
-          I Turn Ideas<br />
+          I Turn Words<br />
           Into{" "}
           <span className="inline-block mt-2">
-            {/* 2. Neubrutalist Effects for "Realities." */}
+            {/* 2. Neubrutalist Effects for "Stories." */}
             <Badge
               className="inline-flex bg-accent text-accent-foreground px-3 sm:px-4 py-1 sm:py-2 text-3xl sm:text-5xl md:text-7xl font-heading font-black border-[3px] border-border shadow-[4px_4px_0px_0px_var(--border)] sm:shadow-[6px_6px_0px_0px_var(--border)] transform -rotate-2 hover:shadow-[2px_2px_0px_0px_var(--border)] hover:translate-x-[4px] hover:translate-y-[4px] transition-all rounded-none"
             >
-              Realities.
+              Stories.
             </Badge>
           </span>
         </h1>
         <p className="text-base sm:text-lg mt-2 sm:mt-4 max-w-md text-foreground font-sans font-medium leading-relaxed">
-          I am a UI/UX designer with a passion for crafting performant, scalable, and user-friendly interfaces.
-          Always looking for new challenges and opportunities to grow my skills.
+          I am an English Student at Universitas Islam Negeri Antasari (UIN Antasari) with a deep passion for English Literature, English Linguistics, Creative Writing, and Language Analysis.
         </p>
         <div className="mt-4 sm:mt-6">
           <a

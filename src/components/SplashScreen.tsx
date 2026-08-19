@@ -9,8 +9,19 @@ export default function SplashScreen() {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
+    // Automatically scroll to top on fresh open / page refresh
+    if (typeof window !== "undefined") {
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
+  useEffect(() => {
     // Lock body scroll while splash screen is active
     if (isVisible) {
+      window.scrollTo(0, 0);
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
