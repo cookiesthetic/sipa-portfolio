@@ -47,6 +47,9 @@ export default function Hero() {
         <img
           src={heroImg.src}
           alt="Syifa Maulida Aprianti Profile Section"
+          loading="eager"
+          // @ts-ignore
+          fetchPriority="high"
           className="w-full h-auto max-w-[320px] sm:max-w-[450px] md:max-w-[900px] mx-auto border-[3px] md:border-0 border-border shadow-[6px_6px_0px_0px_var(--border)] md:shadow-none bg-white md:bg-transparent"
         />
       </div>

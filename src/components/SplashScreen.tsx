@@ -80,12 +80,13 @@ export default function SplashScreen() {
               </div>
 
               {/* Video Player Box */}
-              <div className="relative aspect-video w-full bg-black overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-video w-full bg-[#101c0f] overflow-hidden flex items-center justify-center">
                 <video
                   autoPlay
                   loop
                   muted
                   playsInline
+                  preload="auto"
                   className="w-full h-full object-cover"
                 >
                   <source src="assets/buttercup3.mp4" type="video/mp4" />
