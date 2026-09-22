@@ -11,8 +11,8 @@ const SOCIALS = [
   {
     id: "instagram",
     label: "Instagram",
-    handle: "@olivia",
-    href: "https://instagram.com/",
+    handle: "@syifa.m.a",
+    href: "https://www.instagram.com/syifa.m.a/",
     color: "#faaae9",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
@@ -25,8 +25,8 @@ const SOCIALS = [
   {
     id: "tiktok",
     label: "TikTok",
-    handle: "@olivia",
-    href: "https://tiktok.com/",
+    handle: "@sipalovesgyu",
+    href: "https://www.tiktok.com/@sipalovesgyu",
     color: "#e6ee89",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -37,8 +37,8 @@ const SOCIALS = [
   {
     id: "spotify",
     label: "Spotify",
-    handle: "Olivia",
-    href: "https://open.spotify.com/",
+    handle: "Syifa",
+    href: "https://open.spotify.com/user/317pxulijqkmy2jyyhjfxd6vr7lq?si=63cdfd783f8845ab",
     color: "#a9d98e",
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
@@ -119,8 +119,11 @@ export default function Contact() {
                     {s.icon}
                   </div>
                   <div className="min-w-0 pr-1">
-                    <p className="font-heading font-black text-xs text-foreground leading-none">
+                    <p className="font-heading font-black text-xs text-foreground leading-none mb-0.5">
                       {s.label}
+                    </p>
+                    <p className="font-mono font-bold text-[10px] text-foreground/70 leading-none">
+                      {s.handle}
                     </p>
                   </div>
                 </div>
