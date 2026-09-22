@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 interface Assignment {
   id: number;
   title: string;
@@ -27,7 +29,7 @@ const assignments: Assignment[] = [
     subtitle: "Course Map & Instructional Framework",
     category: "Overview",
     fileType: "image",
-    fileUrl: "/study/Prose and Language Pedagogy.jpeg",
+    fileUrl: `${BASE}/study/prose-and-language-pedagogy.jpeg`,
     fileName: "Prose and Language Pedagogy.jpeg",
     bgColor: "#a9d98e",
     badgeColor: "#e6ee89",
@@ -43,7 +45,7 @@ const assignments: Assignment[] = [
     subtitle: "Prose and Language Pedagogy Log",
     category: "Reflective Lessons",
     fileType: "pdf",
-    fileUrl: "/study/Reflective Lesson 1st Meeting Prose and Language Pedagogy.pdf",
+    fileUrl: `${BASE}/study/reflective-lesson-1st-meeting.pdf`,
     fileName: "Reflective Lesson 1st Meeting Prose and Language Pedagogy.pdf",
     bgColor: "#ba9dda",
     badgeColor: "#faaae9",
@@ -60,7 +62,7 @@ const assignments: Assignment[] = [
     subtitle: "Prose and Language Pedagogy Log",
     category: "Reflective Lessons",
     fileType: "pdf",
-    fileUrl: "/study/Reflective Lesson 2nd Meeting Prose and Language Pedagogy.pdf",
+    fileUrl: `${BASE}/study/reflective-lesson-2nd-meeting.pdf`,
     fileName: "Reflective Lesson 2nd Meeting Prose and Language Pedagogy.pdf",
     bgColor: "#faaae9",
     badgeColor: "#ba9dda",

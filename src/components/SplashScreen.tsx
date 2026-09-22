@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import CountUp from "./CountUp";
 
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 export default function SplashScreen() {
   const [isVisible, setIsVisible] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -100,9 +102,7 @@ export default function SplashScreen() {
                   preload="auto"
                   className="w-full h-full object-cover"
                 >
-                  <source src="assets/buttercup3.mp4" type="video/mp4" />
-                  <source src="./assets/buttercup3.mp4" type="video/mp4" />
-                  <source src="/assets/buttercup3.mp4" type="video/mp4" />
+                  <source src={`${BASE}/assets/buttercup3.mp4`} type="video/mp4" />
                 </video>
               </div>
             </div>
