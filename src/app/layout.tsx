@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import FallingClover from "@/components/FallingClover";
 import SplashScreen from "@/components/SplashScreen";
+import AIChatbot from "@/components/AIChatbot";
 import "./globals.css";
 
 const glora = localFont({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <SplashScreen />
         <FallingClover />
         {children}
+        <AIChatbot />
       </body>
     </html>
   );
