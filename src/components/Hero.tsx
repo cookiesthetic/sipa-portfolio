@@ -29,7 +29,7 @@ export default function Hero() {
           </span>
         </h1>
         <p className="text-base sm:text-lg mt-2 sm:mt-4 max-w-md text-foreground font-sans font-medium leading-relaxed">
-          I am an English Student at Universitas Islam Negeri Antasari (UIN Antasari) with a deep passion for English Literature, English Linguistics, Creative Writing, and Language Analysis.
+          I am an English Student at Universitas Islam Negeri Antasari (UIN Antasari) with a deep passion for English Literature, English Linguistics, and Creative Writing.
         </p>
         <div className="mt-4 sm:mt-6">
           <a

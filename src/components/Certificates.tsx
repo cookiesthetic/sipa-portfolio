@@ -9,7 +9,7 @@ interface Assignment {
   id: number;
   title: string;
   subtitle: string;
-  category: "Reflective Lessons" | "Overview";
+  category: "Reflective Lessons" | "Tasks";
   fileType: "pdf" | "image";
   fileUrl: string;
   fileName: string;
@@ -27,7 +27,7 @@ const assignments: Assignment[] = [
     id: 1,
     title: "Prose & Language Pedagogy Concept Overview",
     subtitle: "Course Map & Instructional Framework",
-    category: "Overview",
+    category: "Tasks",
     fileType: "image",
     fileUrl: `${BASE}/study/prose-and-language-pedagogy.jpeg`,
     fileName: "Prose and Language Pedagogy.jpeg",
@@ -35,7 +35,7 @@ const assignments: Assignment[] = [
     badgeColor: "#e6ee89",
     icon: "🗺️",
     description:
-      "Visual concept map and foundational breakdown of Prose and Language Pedagogy, detailing literary analysis methods and language teaching frameworks.",
+      "Visual concept map and foundational breakdown of Prose and Language Pedagogy, detailing literary structure methods and language teaching frameworks.",
     skills: ["Prose Analysis", "Pedagogy", "Concept Mapping", "Language Teaching"],
     date: "Course Overview",
   },
@@ -75,7 +75,7 @@ const assignments: Assignment[] = [
   },
 ];
 
-const categories = ["All", "Reflective Lessons", "Overview"];
+const categories = ["All", "Reflective Lessons", "Tasks"];
 
 export default function Certificates() {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -93,7 +93,7 @@ export default function Certificates() {
       <div className="bg-primary text-primary-foreground py-6 sm:py-8 border-b-4 border-border flex justify-center items-center gap-2 sm:gap-4 overflow-hidden px-4">
         <span className="text-2xl sm:text-4xl text-secondary font-black font-sans -mt-1 sm:-mt-2">✦</span>
         <h2 className="font-heading font-black text-xl sm:text-3xl md:text-4xl lg:text-5xl text-center leading-tight">
-          Prose and Language Pedagogy Assignments
+          My Assignments
         </h2>
         <span className="text-2xl sm:text-4xl text-secondary font-black font-sans -mt-1 sm:-mt-2">✦</span>
       </div>
@@ -265,7 +265,7 @@ export default function Certificates() {
             {[
               { label: "Total Submissions", value: "3" },
               { label: "Reflective Lessons", value: "2" },
-              { label: "Course Concept Maps", value: "1" },
+              { label: "Tasks", value: "1" },
               { label: "Status", value: "Completed" },
             ].map(({ label, value }) => (
               <div key={label} className="py-4 sm:py-6 px-2 sm:px-4 text-center bg-card">
