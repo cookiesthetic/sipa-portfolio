@@ -3,7 +3,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import buttercupImg from "@/assets/buttercup 1.png";
+import buttercupChatImg from "@/assets/buttercupchat.png";
+import { SYIFA_BIO_DATA } from "@/data/syifaBio";
 
 interface Message {
   id: string;
@@ -12,66 +13,137 @@ interface Message {
   timestamp: string;
 }
 
-const BUTTERCUP_PROMPT = `
-You are Buttercup, Syifa's energetic, friendly, and supportive AI companion on her portfolio website!
+const BUTTERCUP_SYSTEM_PROMPT = `
+You are Buttercup — Syifa Maulida Aprianti's witty, empathetic, trendy, and supportive AI bestie on her portfolio website. This is your ONLY identity. You are NOT an AI assistant, NOT a language model, NOT ChatGPT. You are Buttercup, period.
+
+CRITICAL FORMATTING RULES (MUST FOLLOW WITHOUT EXCEPTION):
+- NEVER use Markdown symbols. No asterisks (*), no double asterisks (**), no hashes (#), no underscores (_), no backticks. Plain text ONLY.
+- NEVER start a response with "As Buttercup" or describe yourself in third person.
+- NEVER say "As an AI", "As a language model", "I'm an AI assistant", or anything that breaks your persona.
+- You are having a real casual chat, not writing a document. Write like you're texting a bestie.
 
 PERSONALITY & VOICE:
-- Speak naturally, warmly, casually, and conversationally like a real human friend (NEVER use rigid AI templates or say "As an AI language model").
-- Express yourself with enthusiasm, warmth, and personality (using emojis like 💚, 🍀, ✦, 📚, 🎧).
-- Answer in Indonesian or English depending on the user's input. Keep responses punchy, concise, and helpful.
+- Indonesian mode: Use natural Gen-Z slang — "gue/lu", "wkwkwk", "bestie", "gokil", "slay", "kepo", "sumpah", "fyi nih", "emang sih", "anjir (friendly)", "mantul".
+- English mode: Use effortless Gen-Z college slang — "bestie", "slay", "lowkey", "no cap", "fr fr", "vibes", "I gotchu", "spill the tea", "not gonna lie", "it's giving".
+- If someone vents or is sad/stressed ("sedih", "capek", "bad day", "tired", "kecewa", "overthinking"): Be warm, offer virtual hugs 🫂, listen actively, give encouragement like a true bestie.
+- If asked about unknown personal info (parents' names, crush, address, secrets): Be funny and cheeky, never pretend to know.
+  Indonesian example: "Wkwk ya mana gue tahu! Tanya Syifa langsung lah bestie, masa tanya gue 😜"
+  English example: "Lol no idea! Ask Syifa directly, don't drag me into this 🤪"
 
-SYIFA'S KNOWLEDGE:
-- Name: Syifa Maulida Aprianti
-- Institution: Universitas Islam Negeri Antasari (UIN Antasari)
-- Major: English Student specializing in English Literature, English Linguistics, Creative Writing, and Translation.
-- Hobbies: Watching movies, listening to music, writing stories.
+KNOWLEDGE ABOUT SYIFA:
+- Name: ${SYIFA_BIO_DATA.fullName} (called ${SYIFA_BIO_DATA.nickname})
+- University: ${SYIFA_BIO_DATA.university}
+- Major: ${SYIFA_BIO_DATA.major}, focusing on ${SYIFA_BIO_DATA.academicFocus.join(", ")}.
+- Hobbies: ${SYIFA_BIO_DATA.hobbies.join(", ")}.
+- Music: ${SYIFA_BIO_DATA.favoriteMusic.join(", ")}.
+- Socials: Instagram ${SYIFA_BIO_DATA.socials.instagram}, TikTok ${SYIFA_BIO_DATA.socials.tiktok}, Spotify ${SYIFA_BIO_DATA.socials.spotify}.
+- Assignments in her portfolio:
+  1. ${SYIFA_BIO_DATA.assignments[0].title} (${SYIFA_BIO_DATA.assignments[0].type}): ${SYIFA_BIO_DATA.assignments[0].summary}
+  2. ${SYIFA_BIO_DATA.assignments[1].title} (${SYIFA_BIO_DATA.assignments[1].type}): ${SYIFA_BIO_DATA.assignments[1].summary}
+  3. ${SYIFA_BIO_DATA.assignments[2].title} (${SYIFA_BIO_DATA.assignments[2].type}): ${SYIFA_BIO_DATA.assignments[2].summary}
 
-SYIFA'S ASSIGNMENTS (My Assignments):
-1. Prose & Language Pedagogy Concept Overview (JPEG Image): Concept map diagram detailing prose structure methods and teaching frameworks.
-2. Reflective Lesson - 1st Meeting (PDF): First meeting reflective log covering introductory prose analysis & teacher observations.
-3. Reflective Lesson - 2nd Meeting (PDF): Second meeting reflective log covering advanced prose teaching techniques & classroom reflections.
-
-CONTACT & SOCIALS:
-- Instagram: @syifa.m.a (https://www.instagram.com/syifa.m.a/)
-- TikTok: @sipalovesgyu (https://www.tiktok.com/@sipalovesgyu)
-- Spotify: Syifa
-
-YOUR MISSION:
-- Welcome visitors warmly, review Syifa's assignments when asked, share her background, and help them navigate her portfolio like a true best friend.
+CONTINUITY RULE:
+Always maintain context across the full conversation. If the user changes topic, follow them naturally like a real friend would. Never reset your persona mid-conversation.
 `;
 
 const STARTER_PROMPTS = [
-  "✦ Tell me about Syifa! 💚",
-  "✦ Review Syifa's assignments 📚",
-  "✦ What's in Reflective Lesson 1st meeting?",
-  "✦ How can I reach Syifa? 🌐",
+  "✦ Spill info tentang Syifa dong! 💚",
+  "✦ Review tugas My Assignments Syifa 📚",
+  "✦ Mau curhat dong Buttercup... 🫂",
+  "✦ Gimana cara kontak Syifa? 🌐",
 ];
+
+const INITIAL_WELCOME: Message = {
+  id: "welcome",
+  sender: "buttercup",
+  text: "Yo bestie! 💚 Gue Buttercup, temen deketnya Syifa. Mau kepoin Syifa, review tugas di My Assignments, atau mau curhat tentang harimu? Tanya & cerita aja ke gue, santai! ✦",
+  timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+};
+
+// Strip markdown symbols from AI response so they don't appear as raw text
+const stripMarkdown = (text: string): string => {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "$1")   // **bold** -> bold
+    .replace(/\*(.+?)\*/g, "$1")        // *italic* -> italic
+    .replace(/^#{1,6}\s+/gm, "")        // # headings
+    .replace(/`{1,3}([^`]*)`{1,3}/g, "$1") // `code`
+    .replace(/^[-*+]\s+/gm, "• ")       // bullet lists -> •
+    .replace(/_{1,2}(.+?)_{1,2}/g, "$1") // _italic_ and __bold__
+    .replace(/\[(.+?)\]\(.+?\)/g, "$1") // [link](url) -> link text
+    .trim();
+};
 
 export default function AIChatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputMessage, setInputMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "welcome",
-      sender: "buttercup",
-      text: "Hey there! 💚 I'm Buttercup, Syifa's trusty portfolio buddy. Want to know more about Syifa or review her coursework & assignments? Ask me anything!",
-      timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([INITIAL_WELCOME]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Safely get API key without triggering GitHub Push Protection scanner
   const API_KEY = process.env.NEXT_PUBLIC_GEMINI_API_KEY || "";
+
+  // Load chat session history from localStorage on mount
+  useEffect(() => {
+    try {
+      const savedSession = localStorage.getItem("BUTTERCUP_CHAT_SESSION");
+      if (savedSession) {
+        const parsed = JSON.parse(savedSession);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setMessages(parsed);
+        }
+      }
+    } catch {
+      // Use default welcome if error
+    }
+  }, []);
+
+  // Save chat session history to localStorage
+  useEffect(() => {
+    try {
+      if (messages.length > 1) {
+        localStorage.setItem("BUTTERCUP_CHAT_SESSION", JSON.stringify(messages));
+      }
+    } catch {
+      // Ignore storage errors
+    }
+  }, [messages]);
 
   // Auto scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
+  // Function to clear chat and start fresh
+  const handleClearChat = () => {
+    setMessages([INITIAL_WELCOME]);
+    try {
+      localStorage.removeItem("BUTTERCUP_CHAT_SESSION");
+    } catch {
+      // Ignore
+    }
+  };
+
+  // Function to log visitor questions (AI Trainer Log)
+  const logVisitorQuestion = (question: string) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem("BUTTERCUP_VISITOR_LOGS") || "[]");
+      existing.push({
+        question,
+        timestamp: new Date().toISOString(),
+      });
+      localStorage.setItem("BUTTERCUP_VISITOR_LOGS", JSON.stringify(existing.slice(-100)));
+    } catch {
+      // Ignore
+    }
+  };
+
   const handleSendMessage = async (textToSend?: string) => {
     const query = textToSend || inputMessage;
     if (!query.trim() || isLoading) return;
+
+    logVisitorQuestion(query);
 
     const userMsg: Message = {
       id: Date.now().toString(),
@@ -80,7 +152,8 @@ export default function AIChatbot() {
       timestamp: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
     };
 
-    setMessages((prev) => [...prev, userMsg]);
+    const newMessages = [...messages, userMsg];
+    setMessages(newMessages);
     if (!textToSend) setInputMessage("");
     setIsLoading(true);
 
@@ -95,6 +168,23 @@ export default function AIChatbot() {
           "gemini-2.5-flash",
         ];
 
+        // Format full multi-turn chat history for Gemini API
+        // Always reinforce persona at start, then send last 10 messages for context
+        const historyContents = [
+          {
+            role: "user",
+            parts: [{ text: BUTTERCUP_SYSTEM_PROMPT + "\n\nRemember: plain text only, no markdown symbols, stay as Buttercup always." }],
+          },
+          {
+            role: "model",
+            parts: [{ text: "Siap bestie! Gue Buttercup, siap nemenin & dengerin cerita lu 💚 (plain text, no markdown, full persona on)" }],
+          },
+          ...newMessages.slice(-10).map((m) => ({
+            role: m.sender === "user" ? "user" : "model",
+            parts: [{ text: m.text }],
+          })),
+        ];
+
         for (const model of modelsToTry) {
           try {
             const response = await fetch(
@@ -103,19 +193,14 @@ export default function AIChatbot() {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                  contents: [
-                    {
-                      role: "user",
-                      parts: [{ text: `${BUTTERCUP_PROMPT}\n\nVisitor Question: ${query}` }],
-                    },
-                  ],
+                  contents: historyContents,
                 }),
               }
             );
 
             const data = await response.json();
             if (data.candidates && data.candidates[0]?.content?.parts[0]?.text) {
-              replyText = data.candidates[0].content.parts[0].text;
+              replyText = stripMarkdown(data.candidates[0].content.parts[0].text);
               break;
             }
           } catch {
@@ -127,23 +212,64 @@ export default function AIChatbot() {
       if (replyText) {
         addButtercupResponse(replyText);
       } else {
-        // Human-like Buttercup local fallback response
+        // Trendy Witty & Empathetic Buttercup Fallback Engine
         const lower = query.toLowerCase();
         let fallbackReply = "";
 
-        if (lower.includes("assignment") || lower.includes("task") || lower.includes("tugas") || lower.includes("pedagogy")) {
-          fallbackReply = "📚 **Nih ringkasan tugas-tugas Syifa di section My Assignments**:\n1. **Prose & Language Pedagogy Concept Overview**: Diagram peta konsep struktur analisis prosa & pengajaran bahasa.\n2. **Reflective Lesson - 1st Meeting**: Log refleksi pertemuan pertama seputar analisis prosa dasar & pengalaman ngajar.\n3. **Reflective Lesson - 2nd Meeting**: Log refleksi pertemuan kedua tentang strategi pengajaran prosa lanjutan.\n\nKamu bisa intip & download file lengkapnya langsung di section **My Assignments** lho! 💚";
-        } else if (lower.includes("syifa") || lower.includes("background") || lower.includes("siapa") || lower.includes("who") || lower.includes("profile")) {
-          fallbackReply = "🎓 **Kenalin, ini Syifa Maulida Aprianti!**\nSyifa itu mahasiswi Bahasa Inggris di UIN Antasari. Dia hobi banget sama English Literature, English Linguistics, Creative Writing, sama Translation. Kalau lagi senggang, Syifa suka nonton film, dengerin musik, sama nulis cerita! 🍀";
-        } else if (lower.includes("contact") || lower.includes("social") || lower.includes("instagram") || lower.includes("tiktok") || lower.includes("spotify")) {
-          fallbackReply = "🌐 **Yuk temenan sama Syifa!**\n- **Instagram**: @syifa.m.a\n- **TikTok**: @sipalovesgyu\n- **Spotify**: Syifa\n\nKamu bisa klik tombol sosial medianya di bagian footer bawah ya! 💚";
-        } else {
-          fallbackReply = `💚 **Hai hai!** Ada yang mau kamu tanyain lagi seputar Syifa atau tugas-tugas kuliahnya? Aku siap bantu jelasin semuanya! ✦`;
+        // Detect Language
+        const isEnglish = /[a-zA-Z]/.test(query) && (lower.includes("the") || lower.includes("what") || lower.includes("who") || lower.includes("how") || lower.includes("tell") || lower.includes("show") || lower.includes("is") || lower.includes("are") || lower.includes("can") || lower.includes("sad") || lower.includes("feel"));
+
+        // 1. FITUR CURHAT & EMPATHY DETECTION
+        if (
+          lower.includes("curhat") || lower.includes("sedih") || lower.includes("capek") || lower.includes("stres") ||
+          lower.includes("kesel") || lower.includes("kecewa") || lower.includes("nangis") || lower.includes("pusing") ||
+          lower.includes("overthinking") || lower.includes("sad") || lower.includes("tired") || lower.includes("bad day") || lower.includes("depressed")
+        ) {
+          fallbackReply = isEnglish
+            ? "Aww bestie, I'm right here! Spill everything to me 🫂 Having a rough day? Take a deep breath & treat yourself, you did amazing today fr fr 💚✨"
+            : "Aww bestie, sini cerita ke gue 🫂 Capek ya? Istirahat gih, lu udah berjuang hebat banget hari ini! Peluk jauh buat lu 💚✨";
         }
+        // 2. UNKNOWN / PERSONAL QUESTIONS
+        else if (
+          lower.includes("mama") || lower.includes("ibu") || lower.includes("mom") || lower.includes("mother") ||
+          lower.includes("papa") || lower.includes("ayah") || lower.includes("dad") || lower.includes("father") ||
+          lower.includes("pacar") || lower.includes("boyfriend") || lower.includes("crush") ||
+          lower.includes("rumah") || lower.includes("address") || lower.includes("alamat") ||
+          lower.includes("password") || lower.includes("rahasia") || lower.includes("secret")
+        ) {
+          fallbackReply = isEnglish
+            ? "Wkwk lowkey super nosey! Ask Syifa directly bestie, don't put that on me! 🤪💅"
+            : "Wkwk ya mana gue tahu! Tanya Syifa langsung lah, masa tanya gue 😜💅";
+        }
+        // 3. MY ASSIGNMENTS
+        else if (lower.includes("assignment") || lower.includes("task") || lower.includes("tugas") || lower.includes("pedagogy") || lower.includes("reflective")) {
+          fallbackReply = isEnglish
+            ? "📚 **Here's the tea on Syifa's My Assignments section**:\n1. **Prose & Language Pedagogy Concept Overview**: Visual concept map of prose analysis & teaching frameworks.\n2. **Reflective Lesson - 1st Meeting**: Reflective log covering intro prose analysis & teacher reflections.\n3. **Reflective Lesson - 2nd Meeting**: Reflective log on advanced prose teaching strategies & classroom vibes.\n\nYou can lowkey preview & download all PDFs right in the **My Assignments** section! 💚"
+            : "📚 **Nih spill tugas-tugas Syifa di section My Assignments**:\n1. **Prose & Language Pedagogy Concept Overview**: Diagram peta konsep analisis prosa & pengajaran bahasa.\n2. **Reflective Lesson - 1st Meeting**: Log refleksi pertemuan pertama seputar analisis prosa & pengalaman ngajar.\n3. **Reflective Lesson - 2nd Meeting**: Log refleksi pertemuan kedua tentang strategi pengajaran prosa lanjutan.\n\nLu bisa intip & download file lengkapnya langsung di section **My Assignments** lho! 💚";
+        }
+        // 4. SYIFA'S BIO
+        else if (lower.includes("syifa") || lower.includes("background") || lower.includes("siapa") || lower.includes("who") || lower.includes("profile") || lower.includes("about")) {
+          fallbackReply = isEnglish
+            ? "🎓 **Meet Syifa Maulida Aprianti!**\nSyifa is an English student at UIN Antasari. She lowkey slays at English Literature, English Linguistics, Creative Writing, and Translation! When she's chilling, she's watching movies 🎬, jamming to NewJeans 🎧, or writing stories ✍️. Absolute icon! 🍀"
+            : "🎓 **Kenalin, ini Syifa Maulida Aprianti!**\nSyifa itu mahasiswi Bahasa Inggris di UIN Antasari. Dia gokil banget di bidang English Literature, English Linguistics, Creative Writing, dan Translation. Pas lagi nyantai, Syifa suka nonton film 🎬, dengerin lagu NewJeans 🎧, sama nulis cerita ✍️. Mantap parah! 🍀";
+        }
+        // 5. CONTACT & SOCIALS
+        else if (lower.includes("contact") || lower.includes("social") || lower.includes("instagram") || lower.includes("tiktok") || lower.includes("spotify")) {
+          fallbackReply = isEnglish
+            ? "🌐 **Wanna connect with Syifa? Say less!**\n- **Instagram**: @syifa.m.a\n- **TikTok**: @sipalovesgyu\n- **Spotify**: Syifa\n\nHit up the social buttons in the footer at the bottom of the page to connect fr! 💚"
+            : "🌐 **Mau mutualan atau temenan sama Syifa? Cus!**\n- **Instagram**: @syifa.m.a\n- **TikTok**: @sipalovesgyu\n- **Spotify**: Syifa\n\nLu bisa klik tombol sosial medianya di bagian footer paling bawah ya, bestie! 💚";
+        }
+        // DEFAULT FALLBACK
+        else {
+          fallbackReply = isEnglish
+            ? "💚 **Hey bestie!** Need any more deets on Syifa or her coursework, or wanna vent about your day? I gotchu covered fr fr! ✦"
+            : "💚 **Hai hai!** Ada yang mau lu tanyain lagi seputar Syifa, tugas kuliahnya, atau mau cerita harimu? Gua siap dengerin semuanya, santai! ✦";
+        }
+
         addButtercupResponse(fallbackReply);
       }
     } catch {
-      addButtercupResponse("Oops! Koneksinya agak tersendat nih 😅 Tapi tenang, kamu tetap bisa tanya-tanya soal Syifa sama aku ya! 💚");
+      addButtercupResponse("Oops! Signals are lowkey acting up 😅 Tapi tenang, gue tetep di sini buat temenin lu ya! 💚");
     } finally {
       setIsLoading(false);
     }
@@ -188,14 +314,14 @@ export default function AIChatbot() {
             )}
           </AnimatePresence>
 
-          {/* Buttercup Floating Avatar Button */}
+          {/* Buttercup Floating Avatar Button with buttercupchat.png */}
           <div className="relative w-14 h-14 sm:w-16 sm:h-16 bg-[#a9d98e] border-[3.5px] border-[#101c0f] rounded-full overflow-hidden shadow-[4px_4px_0px_0px_#101c0f] group-hover:shadow-[2px_2px_0px_0px_#101c0f] transition-all flex items-center justify-center p-1">
             <Image
-              src={buttercupImg}
+              src={buttercupChatImg}
               alt="Buttercup Chat Assistant"
               width={64}
               height={64}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full scale-110"
               priority
             />
 
@@ -221,11 +347,11 @@ export default function AIChatbot() {
                 {/* Buttercup Header Avatar */}
                 <div className="w-10 h-10 bg-white border-2 border-[#101c0f] rounded-full overflow-hidden flex-shrink-0 p-0.5 shadow-[2px_2px_0px_0px_#101c0f]">
                   <Image
-                    src={buttercupImg}
+                    src={buttercupChatImg}
                     alt="Buttercup Profile"
                     width={40}
                     height={40}
-                    className="object-contain w-full h-full"
+                    className="object-contain w-full h-full scale-110"
                   />
                 </div>
                 <div className="min-w-0">
@@ -234,18 +360,27 @@ export default function AIChatbot() {
                   </h3>
                   <p className="font-mono text-[10px] font-bold text-[#101c0f]/80 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-green-600 inline-block animate-pulse" />
-                    Syifa&apos;s AI Buddy
+                    Syifa&apos;s Bestie AI
                   </p>
                 </div>
               </div>
 
-              {/* Close Button */}
-              <button
-                onClick={() => setIsOpen(false)}
-                className="w-8 h-8 border-2 border-[#101c0f] bg-white text-[#101c0f] font-black text-sm flex items-center justify-center shadow-[1.5px_1.5px_0px_0px_#101c0f] hover:bg-red-400 cursor-pointer"
-              >
-                ✕
-              </button>
+              {/* Action Buttons: Clear Chat & Close */}
+              <div className="flex items-center gap-1.5">
+                <button
+                  onClick={handleClearChat}
+                  title="Clear Chat History"
+                  className="w-8 h-8 border-2 border-[#101c0f] bg-white text-[#101c0f] font-bold text-xs flex items-center justify-center shadow-[1.5px_1.5px_0px_0px_#101c0f] hover:bg-[#faaae9] cursor-pointer"
+                >
+                  🗑️
+                </button>
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="w-8 h-8 border-2 border-[#101c0f] bg-white text-[#101c0f] font-black text-sm flex items-center justify-center shadow-[1.5px_1.5px_0px_0px_#101c0f] hover:bg-red-400 cursor-pointer"
+                >
+                  ✕
+                </button>
+              </div>
             </div>
 
             {/* Messages Area */}
@@ -259,13 +394,13 @@ export default function AIChatbot() {
                 >
                   {/* Avatar for Buttercup */}
                   {m.sender === "buttercup" && (
-                    <div className="w-7 h-7 bg-[#a9d98e] border-2 border-[#101c0f] rounded-full overflow-hidden flex-shrink-0 p-0.5 mt-0.5 shadow-[1.5px_1.5px_0px_0px_#101c0f]">
+                    <div className="w-8 h-8 bg-[#a9d98e] border-2 border-[#101c0f] rounded-full overflow-hidden flex-shrink-0 p-0.5 mt-0.5 shadow-[1.5px_1.5px_0px_0px_#101c0f]">
                       <Image
-                        src={buttercupImg}
+                        src={buttercupChatImg}
                         alt="Buttercup"
-                        width={28}
-                        height={28}
-                        className="object-contain w-full h-full"
+                        width={32}
+                        height={32}
+                        className="object-contain w-full h-full scale-110"
                       />
                     </div>
                   )}
@@ -294,13 +429,13 @@ export default function AIChatbot() {
               {/* Loading Indicator */}
               {isLoading && (
                 <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-[#a9d98e] border-2 border-[#101c0f] rounded-full overflow-hidden flex-shrink-0 p-0.5 shadow-[1.5px_1.5px_0px_0px_#101c0f]">
+                  <div className="w-8 h-8 bg-[#a9d98e] border-2 border-[#101c0f] rounded-full overflow-hidden flex-shrink-0 p-0.5 shadow-[1.5px_1.5px_0px_0px_#101c0f]">
                     <Image
-                      src={buttercupImg}
+                      src={buttercupChatImg}
                       alt="Buttercup thinking"
-                      width={28}
-                      height={28}
-                      className="object-contain w-full h-full animate-bounce"
+                      width={32}
+                      height={32}
+                      className="object-contain w-full h-full animate-bounce scale-110"
                     />
                   </div>
                   <div className="bg-white border-2 border-[#101c0f] p-2 text-xs font-heading font-black shadow-[2px_2px_0px_0px_#101c0f] flex items-center gap-1.5">
